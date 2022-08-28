@@ -33,7 +33,7 @@ func isValidTile(pos: Vector2) -> bool:
 	var tilePos = baseMap.world_to_map(baseMap.to_local(pos))
 	var cell = baseMap.get_cell(tilePos.x, tilePos.y)
 	
-	if cell != 0:
+	if cell == -1:
 		return false
 			
 	return true

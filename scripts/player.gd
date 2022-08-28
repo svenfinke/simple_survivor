@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Player
 
-onready var  animation_mode = $AnimationTree.get("parameters/playback")
+# onready var  animation_mode = $AnimationTree.get("parameters/playback")
 
 export var speed: int = 150
 export var health: int = 50
@@ -33,14 +33,14 @@ func _physics_process(_delta):
 		
 	velocity = velocity.normalized()
 	
-	if velocity != Vector2.ZERO:
-		lastVelocity = velocity
-		animation_mode.travel("Walk")
+	# if velocity != Vector2.ZERO:
+	#	lastVelocity = velocity
+	#	animation_mode.travel("Walk")
 #	else:
 #		animation_mode.travel("Idle")
 	
-	$AnimationTree.set('parameters/Walk/blend_position', lastVelocity)
-	$AnimationTree.set('parameters/Hit/blend_position', lastVelocity)
+	# $AnimationTree.set('parameters/Walk/blend_position', lastVelocity)
+	# $AnimationTree.set('parameters/Hit/blend_position', lastVelocity)
 
 	move_and_slide(velocity * speed)
 
@@ -55,4 +55,4 @@ func hit(dmg: int, knockback: float = 0.0) -> void:
 		
 	health -= dmg
 	immunityTimer = immunityTimeInSeconds
-	animation_mode.travel("Hit")
+	# animation_mode.travel("Hit")

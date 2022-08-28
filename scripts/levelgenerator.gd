@@ -12,6 +12,7 @@ var renderOffset: Vector2 = Vector2(50,50)
 var baseCap: float = 0.3
 var spawnerCap: float = 0.01
 var count: int = 20
+var tileSize: int = 8
 
 func _ready():
 	# randomize()
@@ -36,9 +37,9 @@ func _process(delta):
 	var boundaries = generateTileBoundary(playerPosition)
 	
 	if count % 20 == 0:
-		drawAutoTiles(baseMap, [0, 0], boundaries, baseNoise, -1, 0.3)
-		drawAutoTiles(objectsMap, [3,40], boundaries, objectNoise, -.8, -.6)
-		drawStaticTiles(backgroundMap, 1, boundaries)
+		drawAutoTiles(baseMap, [0, 0], boundaries, baseNoise, -1,-0.3)
+		# drawAutoTiles(objectsMap, [3,40], boundaries, objectNoise, -.8, -.6)
+		# drawStaticTiles(backgroundMap, 1, boundaries)
 	
 	count += 1
 	
