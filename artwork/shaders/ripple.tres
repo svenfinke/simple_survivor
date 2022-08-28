@@ -1,0 +1,25 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "// Converted/modified from ShaderToy: https://www.shadertoy.com/view/ldBXDD
+// Attach this shader to a ColorRect
+shader_type canvas_item;
+
+uniform sampler2D noise_texture;
+uniform float speed = .2;
+uniform float strength = 0;
+
+void fragment() {
+	float time = TIME * speed;
+	vec2 uv1 = vec2(UV.x + time, UV.y);
+	vec2 uv2 = vec2(UV.x - time, UV.y);
+	vec2 uv3 = vec2(UV.x, UV.y + time);
+	
+	float noise_r = texture(noise_texture, uv1).r;
+	float noise_g = texture(noise_texture, uv1).g;
+	float noise_b = texture(noise_texture, uv1).b;
+	
+	float new_alpha = clamp(noise_r * noise_g * noise_b, 0, 1) * .1 * strength;
+	
+	COLOR = texture(TEXTURE, UV + new_alpha);
+}"

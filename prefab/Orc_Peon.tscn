@@ -1,0 +1,149 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://artwork/sprites/monsterstimefantasyrpgspritepack/Assets/1x/orc1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/enemy.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="Animation" id=13]
+resource_name = "walk_down"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "walk_left"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "walk_right"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "walk_up"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "walk_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 19 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 20 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachine" id=21]
+states/Walk/node = SubResource( 12 )
+states/Walk/position = Vector2( 344, 184 )
+start_node = "Walk"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+
+[sub_resource type="CircleShape2D" id=24]
+radius = 288.016
+
+[sub_resource type="CircleShape2D" id=23]
+radius = 151.03
+
+[node name="Orc_Peon" type="KinematicBody2D" groups=["Enemy"]]
+collision_mask = 3
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 12
+vframes = 8
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walk_down = SubResource( 13 )
+anims/walk_left = SubResource( 14 )
+anims/walk_right = SubResource( 15 )
+anims/walk_up = SubResource( 16 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 21 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 22 )
+parameters/Walk/blend_position = Vector2( -0.514878, 0.598286 )
+
+[node name="LoseRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LoseRadius"]
+shape = SubResource( 24 )
+
+[node name="DetectionRadius" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRadius"]
+shape = SubResource( 23 )
+
+[connection signal="body_exited" from="LoseRadius" to="." method="_on_LoseRadius_body_exited"]
+[connection signal="body_entered" from="DetectionRadius" to="." method="_on_DetectionRadius_body_entered"]

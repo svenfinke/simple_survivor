@@ -1,0 +1,296 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://artwork/sprites/monsterstimefantasyrpgspritepack/Assets/1x/chara6.png" type="Texture" id=1]
+[ext_resource path="res://scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://artwork/shaders/flash.tres" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 4 )
+shader_param/Speed = 20.0
+shader_param/FlashColor = Color( 1, 1, 1, 1 )
+shader_param/Intensity = 0.0
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Sprite:material:shader_param/Intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "hit_down"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:material:shader_param/Intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "hit_left"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:material:shader_param/Intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "hit_right"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:material:shader_param/Intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=30]
+resource_name = "hit_up"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Sprite:material:shader_param/Intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.1 )
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "walk_down"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "walk_left"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "walk_right"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "walk_up"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.406112 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "hit_left"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "hit_right"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "hit_down"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
+animation = "hit_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=26]
+blend_point_0/node = SubResource( 31 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 32 )
+blend_point_1/pos = Vector2( 1, 0 )
+blend_point_2/node = SubResource( 33 )
+blend_point_2/pos = Vector2( 0, 1 )
+blend_point_3/node = SubResource( 34 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "walk_down"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "walk_up"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=12]
+blend_point_0/node = SubResource( 17 )
+blend_point_0/pos = Vector2( -1, 0 )
+blend_point_1/node = SubResource( 18 )
+blend_point_1/pos = Vector2( 0, 1 )
+blend_point_2/node = SubResource( 19 )
+blend_point_2/pos = Vector2( 1, 0 )
+blend_point_3/node = SubResource( 20 )
+blend_point_3/pos = Vector2( 0, -1 )
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+states/Hit/node = SubResource( 26 )
+states/Hit/position = Vector2( 345.906, 380.5 )
+states/Walk/node = SubResource( 12 )
+states/Walk/position = Vector2( 344, 184 )
+transitions = [ "Walk", "Hit", SubResource( 27 ), "Hit", "Walk", SubResource( 28 ) ]
+start_node = "Walk"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 23 )
+texture = ExtResource( 1 )
+hframes = 12
+vframes = 8
+frame = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 24 )
+anims/hit_down = SubResource( 22 )
+anims/hit_left = SubResource( 25 )
+anims/hit_right = SubResource( 29 )
+anims/hit_up = SubResource( 30 )
+anims/walk_down = SubResource( 4 )
+anims/walk_left = SubResource( 5 )
+anims/walk_right = SubResource( 6 )
+anims/walk_up = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 3 )
+parameters/Hit/blend_position = Vector2( -0.996051, 0 )
+parameters/Walk/blend_position = Vector2( -0.673751, 0.538297 )
